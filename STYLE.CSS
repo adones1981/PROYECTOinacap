@@ -2,8 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #454545;
-    color: #000000;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 header {
@@ -11,6 +11,7 @@ header {
     color: #ffffff;
     padding: 1rem;
     text-align: center;
+    opacity: 1;
 }
 
 nav h1 {
@@ -42,6 +43,8 @@ nav ul li a:hover {
 section {
     padding: 2rem;
     text-align: center;
+    background-color: #000000;
+    opacity: 1;
 }
 
 section h2 {
@@ -61,6 +64,7 @@ section h2 {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
     width: 200px;
+    opacity: 1;
 }
 
 .contact-form {
@@ -87,6 +91,7 @@ section h2 {
     border-radius: 5px;
     background-color: #333;
     color: #ffffff;
+    opacity: 1;
 }
 
 .contact-form textarea {
@@ -114,6 +119,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    opacity: 1;
 }
 
 .social-links a {
