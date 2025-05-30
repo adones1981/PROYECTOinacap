@@ -1,115 +1,294 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-               
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-             
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Define la codificación de caracteres como UTF-8 para soportar caracteres especiales -->
     <meta charset="UTF-8">
+    <!-- Configura la vista para que sea responsiva, ajustándose al ancho del dispositivo -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Establece el título de la página que aparece en la pestaña del navegador -->
     <title>Mi Página Web - Julio Adones</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Incluye la librería XLSX (SheetJS) para manejar archivos Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Define los estilos CSS dentro del documento -->
+    <style>
+        /* Estiliza el cuerpo de la página */
+        body {
+            font-family: Arial, sans-serif; /* Usa la fuente Arial o una sans-serif genérica */
+            margin: 0; /* Elimina márgenes por defecto */
+            padding: 0; /* Elimina padding por defecto */
+            background-color: #000000; /* Establece el fondo negro */
+            color: #ffffff; /* Establece el texto en blanco */
+        }
+
+        /* Estiliza el encabezado */
+        header {
+            background-color: #1a252f; /* Fondo gris oscuro */
+            color: #ffffff; /* Texto blanco */
+            padding: 1rem; /* Espaciado interno */
+            text-align: center; /* Centra el contenido */
+            opacity: 1; /* Asegura que no haya transparencia */
+        }
+
+        /* Estiliza el título dentro de la navegación */
+        nav h1 {
+            margin: 0; /* Elimina márgenes */
+            font-size: 2rem; /* Tamaño de fuente grande */
+        }
+
+        /* Estiliza la lista de navegación */
+        nav ul {
+            list-style: none; /* Elimina los puntos de la lista */
+            padding: 0; /* Elimina padding */
+            margin: 1rem 0 0 0; /* Margen superior */
+        }
+
+        /* Estiliza los ítems de la lista de navegación */
+        nav ul li {
+            display: inline; /* Muestra los ítems en línea */
+            margin: 0 1rem; /* Margen entre ítems */
+        }
+
+        /* Estiliza los enlaces de la navegación */
+        nav ul li a {
+            color: #ffffff; /* Texto blanco */
+            text-decoration: none; /* Sin subrayado */
+            font-weight: bold; /* Texto en negrita */
+        }
+
+        /* Efecto al pasar el ratón sobre los enlaces de navegación */
+        nav ul li a:hover {
+            color: #66b3ff; /* Cambia a azul claro */
+        }
+
+        /* Estiliza las secciones de la página */
+        section {
+            padding: 2rem; /* Espaciado interno */
+            text-align: center; /* Centra el contenido */
+            background-color: #000000; /* Fondo negro */
+            opacity: 1; /* Sin transparencia */
+        }
+
+        /* Estiliza los títulos de las secciones */
+        section h2 {
+            color: #ffffff; /* Texto blanco */
+        }
+
+        /* Estiliza la galería de portafolio */
+        .portfolio-gallery {
+            display: flex; /* Usa flexbox para alinear ítems */
+            justify-content: center; /* Centra los ítems */
+            gap: 2rem; /* Espacio entre ítems */
+            margin-top: 1rem; /* Margen superior */
+        }
+
+        /* Estiliza cada ítem del portafolio */
+        .portfolio-item {
+            background-color: #1a252f; /* Fondo gris oscuro */
+            padding: 1rem; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Sombra suave */
+            width: 200px; /* Ancho fijo */
+            opacity: 1; /* Sin transparencia */
+        }
+
+        /* Estiliza el formulario de contacto */
+        .contact-form {
+            max-width: 500px; /* Ancho máximo */
+            margin: 1rem auto; /* Centra el formulario */
+            text-align: left; /* Alinea el texto a la izquierda */
+        }
+
+        /* Estiliza los contenedores de los campos del formulario */
+        .contact-form div {
+            margin-bottom: 1rem; /* Margen inferior */
+        }
+
+        /* Estiliza las etiquetas del formulario */
+        .contact-form label {
+            display: block; /* Muestra como bloque */
+            margin-bottom: 0.5rem; /* Margen inferior */
+            color: #ffffff; /* Texto blanco */
+        }
+
+        /* Estiliza los campos de entrada y área de texto del formulario */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%; /* Ancho completo */
+            padding: 0.5rem; /* Espaciado interno */
+            border: 1px solid #666; /* Borde gris */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #333; /* Fondo gris oscuro */
+            color: #ffffff; /* Texto blanco */
+            opacity: 1; /* Sin transparencia */
+        }
+
+        /* Estiliza el área de texto específicamente */
+        .contact-form textarea {
+            height: 100px; /* Altura fija */
+        }
+
+        /* Estiliza el botón del formulario */
+        .contact-form button {
+            background-color: #66b3ff; /* Fondo azul claro */
+            color: #ffffff; /* Texto blanco */
+            padding: 0.5rem 1rem; /* Espaciado interno */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cursor de mano al pasar el ratón */
+        }
+
+        /* Efecto al pasar el ratón sobre el botón */
+        .contact-form button:hover {
+            background-color: #4d94ff; /* Azul más oscuro */
+        }
+
+        /* Estiliza el pie de página */
+        footer {
+            background-color: #1a252f; /* Fondo gris oscuro */
+            color: #ffffff; /* Texto blanco */
+            text-align: center; /* Centra el contenido */
+            padding: 1rem; /* Espaciado interno */
+            position: relative; /* Posición relativa */
+            bottom: 0; /* Ajusta al fondo */
+            width: 100%; /* Ancho completo */
+            opacity: 1; /* Sin transparencia */
+        }
+
+        /* Estiliza los enlaces sociales en el pie de página */
+        .social-links a {
+            color: #ffffff; /* Texto blanco */
+            margin: 0 0.5rem; /* Margen entre enlaces */
+            text-decoration: none; /* Sin subrayado */
+        }
+
+        /* Efecto al pasar el ratón sobre los enlaces sociales */
+        .social-links a:hover {
+            color: #66b3ff; /* Cambia a azul claro */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block; /* Muestra los ítems como bloques */
+                margin: 0.5rem 0; /* Margen vertical */
+            }
+
+            .portfolio-gallery {
+                flex-direction: column; /* Apila los ítems verticalmente */
+                align-items: center; /* Centra los ítems */
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Script JavaScript para manejar archivos Excel -->
+    <script type="text/javascript">
+        // patricks: true; /* Permite que el script se ejecute después de que la página se haya cargado */
+        // Declara variables globales
+        var gk_isXlsx = false; /* Indica si se está manejando un archivo Excel (.xlsx) */
+        var gk_xlsxFileLookup = {}; /* Diccionario para rastrear archivos .xlsx */
+        var gk_fileData = {}; /* Almacena datos de archivos cargados */
+        
+        // Función para verificar si una celda tiene contenido
+        function filledCell(cell) {
+            return cell !== '' && cell != null; /* Devuelve true si la celda no está vacía ni es null */
+        }
+
+        // Función para cargar y procesar datos de un archivo
+        function loadFileData(filename) {
+            if (gk_isXlsx && gk_xlsxFileLookup[filename]) { /* Verifica si es un archivo .xlsx y existe en el diccionario */
+                try {
+                    var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' }); /* Lee el archivo como base64 usando la librería XLSX */
+                    var firstSheetName = workbook.SheetNames[0]; /* Obtiene el nombre de la primera hoja */
+                    var worksheet = workbook.Sheets[firstSheetName]; /* Accede a la primera hoja */
+                    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' }); /* Convierte la hoja a JSON */
+                    var filteredData = jsonData.filter(row => row.some(filledCell)); /* Filtra filas con celdas llenas */
+                    var headerRowIndex = filteredData.findIndex((row, index) =>
+                        row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                    ); /* Encuentra el índice de la fila de encabezado */
+                    if (headerRowIndex === -1 || headerRowIndex > 25) { /* Si no se encuentra un encabezado válido o está más allá de la fila 25 */
+                        headerRowIndex = 0; /* Usa la primera fila como encabezado */
+                    }
+                    var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); /* Convierte los datos a una hoja a partir del encabezado */
+                    csv = XLSX.utils.sheet_to_csv(csv, { header: 1 }); /* Convierte la hoja a formato CSV */
+                    return csv; /* Devuelve el CSV generado */
+                } catch (e) {
+                    console.error(e); /* Registra cualquier error en la consola */
+                    return ""; /* Devuelve una cadena vacía si hay error */
+                }
+            }
+            return gk_fileData[filename] || ""; /* Devuelve los datos originales o una cadena vacía */
+        }
+    </script>
+
+    <!-- Encabezado con barra de navegación -->
     <header>
         <nav>
-            <h1>Mi Página Web</h1>
+            <h1>Mi Página Web</h1> <!-- Título principal -->
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#portafolio">Portafolio</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#inicio">Inicio</a></li> <!-- Enlace a la sección de inicio -->
+                <li><a href="#portafolio">Portafolio</a></li> <!-- Enlace a la sección de portafolio -->
+                <li><a href="#contacto">Contacto</a></li> <!-- Enlace a la sección de contacto -->
             </ul>
         </nav>
     </header>
 
+    <!-- Sección de inicio -->
     <section id="inicio">
-        <h2>¡Bienvenidos!</h2>
-        <p>Gracias por visitar mi sitio web. Soy Julio Adones, un apasionado por el diseño y desarrollo web. Aquí encontrarás información sobre mis trabajos y cómo contactarme.</p>
-          <p>soy estudiante de Inacap en la carrera de Analista Programador y trabajo en el area de soporte TI</p>
+        <h2>¡Bienvenidos!</h2> <!-- Título de la sección -->
+        <p>Gracias por visitar mi sitio web. Soy Julio Adones, un apasionado por el diseño y desarrollo web. Aquí encontrarás información sobre mis trabajos y cómo contactarme.</p> <!-- Descripción personal -->
+        <p>soy estudiante de Inacap en la carrera de Analista Programador y trabajo en el area de soporte TI</p> <!-- Información adicional sobre estudios y trabajo -->
     </section>
 
+    <!-- Sección de portafolio -->
     <section id="portafolio">
-        <h2>Portafolio</h2>
+        <h2>Portafolio</h2> <!-- Título de la sección -->
         <div class="portfolio-gallery">
             <div class="portfolio-item">
-                <h3>Proyecto app</h3>
-                <p>creacion de app web .</p>
+                <h3>Proyecto app</h3> <!-- Título del  --nfl
+                <p>creacion de app web .</p> <!-- Descripción del proyecto -->
             </div>
             <div class="portfolio-item">
-                <h3>Proyecto paginas</h3>
-                <p>creacion de paginas web.</p>
+                <h3>Proyecto paginas</h3> <!-- Título del segundo proyecto -->
+                <p>creacion de paginas web.</p> <!-- Descripción del proyecto -->
             </div>
         </div>
     </section>
 
+    <!-- Sección de contacto -->
     <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Contáctame a través de:</p>
+        <h2>Contacto</h2> <!-- Título de la sección -->
+        <p>Contáctame a través de:</p> <!-- Introducción a la información de contacto -->
         <ul>
-            <li>Email: julioadones@gmail.com</li>
-            <li>Teléfono: +123 456 7890</li>
+            <li>Email: julioadones@gmail.com</li> <!-- Dirección de email -->
+            <li>Teléfono: +123 456 7890</li> <!-- Número de teléfono -->
         </ul>
         <div class="contact-form">
-            <h3>Envíame un mensaje</h3>
+            <h3>Envíame un mensaje</h3> <!-- Título del formulario -->
             <div>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <label for="nombre">Nombre:</label> <!-- Etiqueta del campo de nombre -->
+                <input type="text" id="nombre" name="nombre" required> <!-- Campo de entrada para el nombre -->
             </div>
             <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">Email:</label> <!-- Etiqueta del campo de email -->
+                <input type="email" id="email" name="email" required> <!-- Campo de entrada para el email -->
             </div>
             <div>
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
+                <label for="mensaje">Mensaje:</label> <!-- Etiqueta del campo de mensaje -->
+                <textarea id="mensaje" name="mensaje" required></textarea> <!-- Área de texto para el mensaje -->
             </div>
-            <button onclick="alert('Mensaje enviado (simulación).')">Enviar</button>
+            <button onclick="alert('Mensaje enviado (simulación).')">Enviar</button> <!-- Botón que simula enviar el mensaje -->
         </div>
     </section>
 
+    <!-- Pie de página -->
     <footer>
-        <p>© 2025 Julio Adones</p>
+        <p>© 2025 Julio Adones</p> <!-- Copyright -->
         <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+            <a href="#">Facebook</a> <!-- Enlace a Facebook -->
+            <a href="#">Twitter</a> <!-- Enlace a Twitter -->
+            <a href="#">Instagram</a> <!-- Enlace a Instagram -->
         </div>
     </footer>
 </body>
-
 </html>
