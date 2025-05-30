@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #454545;
+    color: #000000;
+}
+
+header {
+    background-color: #1a252f;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #66b3ff;
+}
+
+section {
+    padding: 2rem;
+    text-align: center;
+}
+
+section h2 {
+    color: #ffffff;
+}
+
+.portfolio-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.portfolio-item {
+    background-color: #1a252f;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    width: 200px;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: 1rem auto;
+    text-align: left;
+}
+
+.contact-form div {
+    margin-bottom: 1rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #333;
+    color: #ffffff;
+}
+
+.contact-form textarea {
+    height: 100px;
+}
+
+.contact-form button {
+    background-color: #66b3ff;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #4d94ff;
+}
+
+footer {
+    background-color: #1a252f;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.social-links a {
+    color: #ffffff;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #66b3ff;
+}
+
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+    .portfolio-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+}
