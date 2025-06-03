@@ -1,145 +1,172 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo y texto */
+body {
     background-color: #000000;
     color: #ffffff;
-}
-
-header {
-    background-color: #1a252f;
-    color: #ffffff;
-    padding: 1rem;
+    font-family: Arial, sans-serif;
     text-align: center;
-    opacity: 1;
+    line-height: 1.6;
+    padding: 20px;
 }
 
-nav h1 {
-    margin: 0;
-    font-size: 2rem;
+/* Encabezados */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
 }
 
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    margin-top: 40px;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Navegación */
 nav ul {
     list-style: none;
-    padding: 0;
-    margin: 1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 1rem;
-}
-
-nav ul li a {
-    color: #ffffff;
+nav a {
+    color: #00ff00;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #66b3ff;
+nav a:hover {
+    color: #66ff66;
 }
 
-section {
-    padding: 2rem;
-    text-align: center;
-    background-color: #000000;
-    opacity: 1;
+/* Párrafos */
+p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
 }
 
-section h2 {
-    color: #ffffff;
-}
-
+/* Portafolio */
 .portfolio-gallery {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .portfolio-item {
-    background-color: #1a252f;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-    width: 200px;
-    opacity: 1;
+    background-color: #121212;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px #00ff00aa;
 }
 
+/* Listas */
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    font-size: 1.1rem;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Formulario de contacto */
 .contact-form {
-    max-width: 500px;
-    margin: 1rem auto;
+    max-width: 400px;
+    margin: 0 auto 40px auto;
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ff00aa;
     text-align: left;
 }
 
-.contact-form div {
-    margin-bottom: 1rem;
+.contact-form h3 {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: 0.5rem;
-    color: #ffffff;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #666;
-    border-radius: 5px;
-    background-color: #333;
-    color: #ffffff;
-    opacity: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: #222;
+    color: #fff;
+    font-size: 1rem;
 }
 
-.contact-form textarea {
-    height: 100px;
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #aaa;
 }
 
 .contact-form button {
-    background-color: #66b3ff;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
+    width: 100%;
+    background-color: #00ff00;
     border: none;
-    border-radius: 5px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .contact-form button:hover {
-    background-color: #4d94ff;
+    background-color: #66ff66;
 }
 
+/* Footer */
 footer {
-    background-color: #1a252f;
-    color: #ffffff;
-    text-align: center;
-    padding: 1rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    opacity: 1;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #00ff00;
+    font-size: 1rem;
+}
+
+.social-links {
+    margin-top: 10px;
 }
 
 .social-links a {
-    color: #ffffff;
-    margin: 0 0.5rem;
+    color: #00ff00;
+    margin: 0 10px;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #66b3ff;
-}
-
-@media (max-width: 600px) {
-    nav ul li {
-        display: block;
-        margin: 0.5rem 0;
-    }
-
-    .portfolio-gallery {
-        flex-direction: column;
-        align-items: center;
-    }
+    color: #66ff66;
 }
