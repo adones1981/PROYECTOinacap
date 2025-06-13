@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web - Julio Adones</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Mi Página Web</h1>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h2>¡Bienvenidos!</h2>
+        <p>Gracias por visitar mi sitio web. Soy Julio Adones, un apasionado por el diseño y desarrollo web. Aquí encontrarás información sobre mis trabajos y cómo contactarme.</p>
+        <p>Soy estudiante del Instituto Inacap de Santiago de Chile en la carrera de Analista Programador y trabajo en el área de soporte TI</p>
+    </section>
+
+    <section id="portafolio">
+        <h2>Portafolio</h2>
+        <div class="portfolio-gallery">
+            <div class="portfolio-item">
+                <h3>Creación de app</h3>
+                <p>Desarrollo de apps funcionales para equipos móviles</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>Creación de páginas web</h3>
+                <p>Desarrollo páginas para clientes personalizadas</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Contáctame a través de:</p>
+        <ul>
+            <li>Email: julioadones@gmail.com</li>
+            <li>Teléfono: +123 456 7890</li>
+        </ul>
+        <div class="contact-form">
+            <h3>Envíame un mensaje</h3>
+            <form id="formularioContacto" novalidate>
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <span class="error-message" id="error-nombre"></span>
+                </div>
+                <div>
+                    <label for="rut">RUT:</label>
+                    <input type="text" id="rut" name="rut" required placeholder="Ej: 12345678-9">
+                    <span class="error-message" id="error-rut"></span>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="error-email"></span>
+                </div>
+                <div>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" required>
+                    <span class="error-message" id="error-telefono"></span>
+                </div>
+                <div>
+                    <label for="comuna">Comuna:</label>
+                    <input type="text" id="comuna" name="comuna" required>
+                    <span class="error-message" id="error-comuna"></span>
+                </div>
+                <div>
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                    <span class="error-message" id="error-mensaje"></span>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Julio Adones</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+
+    <script>
+        function validarRUT(rut) {
+            rut = rut.replace(/\./g, '').replace('-', '');
+            if (rut.length < 8) return false;
+            const cuerpo = rut.slice(0, -1);
+            let dv = rut.slice(-1).toUpperCase();
+
+            let suma = 0;
+            let multiplo = 2;
+            for (let i = cuerpo.length - 1; i >= 0; i--) {
+                suma += parseInt(cuerpo[i]) * multiplo;
+                multiplo = multiplo < 7 ? multiplo + 1 : 2;
+            }
+            let dvr = 11 - (suma % 11);
+            dvr = dvr === 11 ? '0' : dvr === 10 ? 'K' : dvr.toString();
+
+            return dv === dvr;
+        }
+
+        document.getElementById('formularioContacto').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Obtener valores
+            const nombre = document.getElementById('nombre').value.trim();
+            const rut = document.getElementById('rut').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const comuna = document.getElementById('comuna').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            // Mensajes de error
+            const errorNombre = document.getElementById('error-nombre');
+            const errorRut = document.getElementById('error-rut');
+            const errorEmail = document.getElementById('error-email');
+            const errorTelefono = document.getElementById('error-telefono');
+            const errorComuna = document.getElementById('error-comuna');
+            const errorMensaje = document.getElementById('error-mensaje');
+
+            // Limpiar errores anteriores
+            errorNombre.textContent = '';
+            errorRut.textContent = '';
+            errorEmail.textContent = '';
+            errorTelefono.textContent = '';
+            errorComuna.textContent = '';
+            errorMensaje.textContent = '';
+
+            // Expresiones regulares
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const telefonoRegex = /^[0-9]{7,15}$/;
+
+            let valido = true;
+
+            if (!nombre) {
+                errorNombre.textContent = 'Por favor, ingresa tu nombre.';
+                valido = false;
+            }
+
+            if (!rut || !validarRUT(rut)) {
+                errorRut.textContent = 'Por favor, ingresa un RUT válido.';
+                valido = false;
+            }
+
+            if (!email || !emailRegex.test(email)) {
+                errorEmail.textContent = 'Por favor, ingresa un email válido.';
+                valido = false;
+            }
+
+            if (!telefono || !telefonoRegex.test(telefono)) {
+                errorTelefono.textContent = 'El teléfono debe tener solo números (7 a 15 dígitos).';
+                valido = false;
+            }
+
+            if (!comuna) {
+                errorComuna.textContent = 'Por favor, ingresa tu comuna.';
+                valido = false;
+            }
+
+            if (!mensaje || mensaje.length < 10) {
+                errorMensaje.textContent = 'El mensaje debe tener al menos 10 caracteres.';
+                valido = false;
+            }
+
+            if (valido) {
+                alert('Mensaje enviado correctamente (simulación).');
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
