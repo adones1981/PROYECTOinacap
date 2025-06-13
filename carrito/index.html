@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Servicios TI - Carrito de Compras</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>¡Bienvenidos!</h1>
+    <p>Elige los servicios que necesitas</p>
+  </header>
+
+  <section class="services">
+    <div class="service"><h3>Página Web</h3><button onclick="addToCart(this, 'Página Web')">Agregar al carrito</button></div>
+    <div class="service"><h3>Página Móvil</h3><button onclick="addToCart(this, 'Página Móvil')">Agregar al carrito</button></div>
+    <div class="service"><h3>Soporte Remoto</h3><button onclick="addToCart(this, 'Soporte Remoto')">Agregar al carrito</button></div>
+    <div class="service"><h3>Soporte Presencial</h3><button onclick="addToCart(this, 'Soporte Presencial')">Agregar al carrito</button></div>
+    <div class="service"><h3>Licencias de Aplicaciones</h3><button onclick="addToCart(this, 'Licencias de Aplicaciones')">Agregar al carrito</button></div>
+    <div class="service"><h3>Mantención Preventiva</h3><button onclick="addToCart(this, 'Mantención Preventiva')">Agregar al carrito</button></div>
+    <div class="service"><h3>Visita Técnica</h3><button onclick="addToCart(this, 'Visita Técnica')">Agregar al carrito</button></div>
+    <div class="service"><h3>Diseño de Páginas Personalizadas</h3><button onclick="addToCart(this, 'Diseño de Páginas Personalizadas')">Agregar al carrito</button></div>
+  </section>
+
+  <section id="cart">
+    <h2>🛒 Carrito de Compras</h2>
+    <div id="cart-items"></div>
+    <p id="cart-total"></p>
+    <button id="quote-btn" onclick="sendQuote()">Enviar Cotización</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Servicios TI | Todos los derechos reservados</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
