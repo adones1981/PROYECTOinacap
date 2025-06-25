@@ -22,12 +22,12 @@ body {
   }
   
   .service {
-    border: 2px solid #39ff14; /* Verde fluor */
+    border: 2px solid #39ff14; 
     padding: 15px;
     width: 180px;
     text-align: center;
     border-radius: 8px;
-    background-color: #111; /* oscuro pero no totalmente negro para contraste */
+    background-color: #111; 
     box-shadow: 0 0 10px #39ff14;
     transition: box-shadow 0.3s ease;
   }
@@ -67,7 +67,7 @@ body {
   }
   
   .service button:hover {
-    background-color: #ff6600;  /* Cambié a naranja */
+    background-color: #ff6600;  
   }
   
   
@@ -75,7 +75,7 @@ body {
     background-color: #1aff00;
   }
   
-  /* Carrito */
+
   #cart {
     max-width: 600px;
     margin: 0 auto 40px auto;
@@ -160,7 +160,7 @@ body {
   }
   
   #quote-btn:hover {
-    background-color: #ff6600; /* naranja */
+    background-color: #ff6600; 
   }
   
   
