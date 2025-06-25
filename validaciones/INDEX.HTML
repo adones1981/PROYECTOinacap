@@ -4,213 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página Web - Julio Adones</title>
+    <!-- Carga de Tailwind CSS CDN para estilos rápidos y responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Enlace al archivo style.css separado -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        .error-message {
-            color: red;
-            font-size: 0.9em;
-       }
-    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <h1>Mi Página Web</h1>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#portafolio">Portafolio</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+<body class="font-sans antialiased bg-gray-900 text-white">
+    <!-- Encabezado de la página -->
+    <header class="bg-gray-800 text-white p-4 shadow-lg rounded-b-lg">
+        <nav class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold mb-2 md:mb-0">Mi Página Web</h1>
+            <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+                <li><a href="#inicio" class="hover:text-lime-400 transition duration-300">Inicio</a></li>
+                <li><a href="#portafolio" class="hover:text-lime-400 transition duration-300">Portafolio</a></li>
+                <li><a href="#contacto" class="hover:text-lime-400 transition duration-300">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio">
-        <h2>¡Bienvenidos!</h2>
-        <p>Gracias por visitar mi sitio web. Soy Julio Adones, un apasionado por el diseño y desarrollo web. Aquí encontrarás información sobre mis trabajos y cómo contactarme.</p>
-        <p>Soy estudiante del Instituto Inacap de Santiago de Chile en la carrera de Analista Programador y trabajo en el área de soporte TI</p>
+    <!-- Sección de Inicio -->
+    <section id="inicio" class="container mx-auto my-8 p-6 bg-gray-800 shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold text-lime-400 mb-4">¡Bienvenidos!</h2>
+        <p class="mb-4 leading-relaxed">Gracias por visitar mi sitio web. Soy Julio Adones, un apasionado por el diseño y desarrollo web. Aquí encontrarás información sobre mis trabajos y cómo contactarme.</p>
+        <p class="leading-relaxed">Soy estudiante del Instituto Inacap de Santiago de Chile en la carrera de Analista Programador y trabajo en el área de soporte TI</p>
     </section>
 
-    <section id="portafolio">
-        <h2>Portafolio</h2>
-        <div class="portfolio-gallery">
-            <div class="portfolio-item">
-                <h3>Creación de app</h3>
-                <p>Desarrollo de apps funcionales para equipos móviles</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Creación de páginas web</h3>
-                <p>Desarrollo páginas para clientes personalizadas</p>
-            </div>
+    <!-- Sección de Portafolio -->
+    <section id="portafolio" class="container mx-auto my-8 p-6 bg-gray-800 shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold text-lime-400 mb-4">Portafolio</h2>
+        <!-- Contenido del portafolio se generará dinámicamente aquí -->
+        <div class="portfolio-gallery grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <!-- Los elementos del portafolio se insertarán aquí por JavaScript -->
         </div>
     </section>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Contáctame a través de:</p>
-        <ul>
-            <li>Email: julioadones@gmail.com</li>
-            <li>Teléfono: +123 456 7890</li>
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="container mx-auto my-8 p-6 bg-gray-800 shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold text-lime-400 mb-4">Contacto</h2>
+        <p class="mb-4 leading-relaxed">Contáctame a través de:</p>
+        <ul class="list-disc list-inside mb-6 space-y-1">
+            <li>Email: <a href="mailto:julioadones@gmail.com" class="text-lime-400 hover:underline">julioadones@gmail.com</a></li>
+            <li>Teléfono: <a href="tel:+1234567890" class="text-lime-400 hover:underline">+123 456 7890</a></li>
         </ul>
-        <div class="contact-form">
-            <h3>Envíame un mensaje</h3>
+        <div class="contact-form bg-gray-700 p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-lime-300 mb-4">Envíame un mensaje</h3>
             <form id="formularioContacto" novalidate>
-                <div>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                <div class="mb-4">
+                    <label for="nombre" class="block text-gray-200 text-sm font-bold mb-2">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required
+                           class="shadow appearance-none border border-gray-600 bg-gray-800 rounded-lg w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400">
                     <span class="error-message" id="error-nombre"></span>
                 </div>
-                <div>
-                    <label for="rut">RUT:</label>
-                    <input type="text" id="rut" name="rut" required placeholder="Ej: 12345678-9">
+                <div class="mb-4">
+                    <label for="rut" class="block text-gray-200 text-sm font-bold mb-2">RUT:</label>
+                    <input type="text" id="rut" name="rut" required placeholder="Ej: 12345678-9"
+                           class="shadow appearance-none border border-gray-600 bg-gray-800 rounded-lg w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400">
                     <span class="error-message" id="error-rut"></span>
                 </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-200 text-sm font-bold mb-2">Email:</label>
+                    <input type="email" id="email" name="email" required
+                           class="shadow appearance-none border border-gray-600 bg-gray-800 rounded-lg w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400">
                     <span class="error-message" id="error-email"></span>
                 </div>
-                <div>
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefono" required>
+                <div class="mb-4">
+                    <label for="telefono" class="block text-gray-200 text-sm font-bold mb-2">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" required
+                           class="shadow appearance-none border border-gray-600 bg-gray-800 rounded-lg w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400">
                     <span class="error-message" id="error-telefono"></span>
                 </div>
-                <div>
-                    <label for="comuna">Comuna:</label>
-                    <input type="text" id="comuna" name="comuna" required>
+                <div class="mb-4">
+                    <label for="comuna" class="block text-gray-200 text-sm font-bold mb-2">Comuna:</label>
+                    <input type="text" id="comuna" name="comuna" required
+                           class="shadow appearance-none border border-gray-600 bg-gray-800 rounded-lg w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400">
                     <span class="error-message" id="error-comuna"></span>
                 </div>
-                <div>
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" required></textarea>
+                <div class="mb-6">
+                    <label for="mensaje" class="block text-gray-200 text-sm font-bold mb-2">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required rows="5"
+                              class="shadow appearance-none border border-gray-600 bg-gray-800 rounded-lg w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400"></textarea>
                     <span class="error-message" id="error-mensaje"></span>
                 </div>
-                <button type="submit">Enviar</button>
+                <button type="submit"
+                        class="bg-lime-500 hover:bg-lime-600 text-gray-900 font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300">
+                    Enviar
+                </button>
             </form>
         </div>
     </section>
 
-    <footer>
-        <p>© 2025 Julio Adones</p>
-        <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+    <!-- Pie de página -->
+    <footer class="bg-gray-900 text-white p-6 text-center rounded-t-lg mt-8">
+        <p class="mb-4">&copy; 2025 Julio Adones</p>
+        <div class="social-links space-x-4">
+            <a href="#" class="hover:text-lime-400 transition duration-300">Facebook</a>
+            <a href="#" class="hover:text-lime-400 transition duration-300">Twitter</a>
+            <a href="#" class="hover:text-lime-400 transition duration-300">Instagram</a>
         </div>
     </footer>
 
-   <script>
-    function validarRUT(rut) {
-        rut = rut.replace(/\./g, '').replace('-', '');
-        if (rut.length < 8) return false;
-        const cuerpo = rut.slice(0, -1);
-        let dv = rut.slice(-1).toUpperCase();
+    <!-- Estructura del Modal de Mensaje -->
+    <div id="messageModal" class="fixed inset-0 modal-overlay flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-xl max-w-sm w-full text-center">
+            <h3 id="modalTitle" class="text-2xl font-bold text-lime-400 mb-4"></h3>
+            <p id="modalMessage" class="text-gray-200 mb-6"></p>
+            <button id="closeModal" class="bg-lime-500 hover:bg-lime-600 text-gray-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300">
+                Aceptar
+            </button>
+        </div>
+    </div>
 
-        let suma = 0;
-        let multiplo = 2;
-        for (let i = cuerpo.length - 1; i >= 0; i--) {
-            suma += parseInt(cuerpo[i]) * multiplo;
-            multiplo = multiplo < 7 ? multiplo + 1 : 2;
-        }
-        let dvr = 11 - (suma % 11);
-        dvr = dvr === 11 ? '0' : dvr === 10 ? 'K' : dvr.toString();
-
-        return dv === dvr;
-    }
-
-    const formulario = document.getElementById('formularioContacto');
-
-    // === INTERACCIÓN CON EL DOM ===
-    const nombreInput = document.getElementById('nombre');
-    const mensajeInput = document.getElementById('mensaje');
-
-    // 1. Mostrar saludo en vivo
-    nombreInput.addEventListener('input', () => {
-        const seccionInicio = document.getElementById('inicio');
-        if (nombreInput.value.trim() !== "") {
-            seccionInicio.querySelector('h2').textContent = `¡Hola, ${nombreInput.value.trim()}!`;
-        } else {
-            seccionInicio.querySelector('h2').textContent = `¡Bienvenidos!`;
-        }
-    });
-
-    // 2. Contador de caracteres en el mensaje
-    const contador = document.createElement('p');
-    contador.id = 'contador-caracteres';
-    contador.style.fontSize = '0.85em';
-    mensajeInput.insertAdjacentElement('afterend', contador);
-
-    mensajeInput.addEventListener('input', () => {
-        contador.textContent = `Caracteres: ${mensajeInput.value.length}`;
-    });
-
-    // 3. Cambiar borde al escribir en cualquier input
-    const inputs = document.querySelectorAll('#formularioContacto input, #formularioContacto textarea');
-    inputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.style.borderColor = "#2a8";
-        });
-    });
-
-    formulario.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const rut = document.getElementById('rut').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const telefono = document.getElementById('telefono').value.trim();
-        const comuna = document.getElementById('comuna').value.trim();
-        const mensaje = mensajeInput.value.trim();
-
-        const errorNombre = document.getElementById('error-nombre');
-        const errorRut = document.getElementById('error-rut');
-        const errorEmail = document.getElementById('error-email');
-        const errorTelefono = document.getElementById('error-telefono');
-        const errorComuna = document.getElementById('error-comuna');
-        const errorMensaje = document.getElementById('error-mensaje');
-
-        // Limpiar errores anteriores
-        [errorNombre, errorRut, errorEmail, errorTelefono, errorComuna, errorMensaje].forEach(e => e.textContent = "");
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const telefonoRegex = /^[0-9]{7,15}$/;
-
-        let valido = true;
-
-        if (!nombreInput.value.trim()) {
-            errorNombre.textContent = 'Por favor, ingresa tu nombre.';
-            valido = false;
-        }
-
-        if (!rut || !validarRUT(rut)) {
-            errorRut.textContent = 'Por favor, ingresa un RUT válido.';
-            valido = false;
-        }
-
-        if (!email || !emailRegex.test(email)) {
-            errorEmail.textContent = 'Por favor, ingresa un email válido.';
-            valido = false;
-        }
-
-        if (!telefono || !telefonoRegex.test(telefono)) {
-            errorTelefono.textContent = 'El teléfono debe tener solo números (7 a 15 dígitos).';
-            valido = false;
-        }
-
-        if (!comuna) {
-            errorComuna.textContent = 'Por favor, ingresa tu comuna.';
-            valido = false;
-        }
-
-        if (!mensaje || mensaje.length < 10) {
-            errorMensaje.textContent = 'El mensaje debe tener al menos 10 caracteres.';
-            valido = false;
-        }
-
-        if (valido) {
-            alert('Mensaje enviado correctamente (simulación).');
-            formulario.reset();
-            contador.textContent = "";
-            document.getElementById('inicio').querySelector('h2').textContent = "¡Bienvenidos!";
-            inputs.forEach(input => input.style.borderColor = ""); // reinicia bordes
-        }
-    });
-</script>
+    <!-- Enlace al archivo script.js separado -->
+    <script src="script.js"></script>
+</body>
+</html>
