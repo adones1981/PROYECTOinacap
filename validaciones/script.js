@@ -1,7 +1,7 @@
 
 // script.js
 
-// Función para mostrar el modal de mensaje
+
 function showMessageModal(title, message) {
     const modal = document.getElementById('messageModal');
     document.getElementById('modalTitle').textContent = title;
@@ -9,31 +9,31 @@ function showMessageModal(title, message) {
     modal.classList.remove('hidden');
 }
 
-// Función para ocultar el modal de mensaje
+
 function hideMessageModal() {
     const modal = document.getElementById('messageModal');
     modal.classList.add('hidden');
 }
 
-// Event listener para cerrar el modal
+
 document.getElementById('closeModal').addEventListener('click', hideMessageModal);
 
 // Función para validar el RUT chileno
 function validarRUT(rut) {
-    rut = rut.replace(/\./g, '').replace('-', ''); // Limpia el RUT de puntos y guiones
-    if (rut.length < 8) return false; // El RUT debe tener al menos 8 caracteres (cuerpo + DV)
+    rut = rut.replace(/\./g, '').replace('-', ''); 
+    if (rut.length < 8) return false; 
 
-    const cuerpo = rut.slice(0, -1); // Extrae el cuerpo del RUT
-    let dv = rut.slice(-1).toUpperCase(); // Extrae el dígito verificador y lo convierte a mayúscula
+    const cuerpo = rut.slice(0, -1); 
+    let dv = rut.slice(-1).toUpperCase(); 
 
     let suma = 0;
-    let multiplo = 2; // Multiplicador inicial para el algoritmo
-    // Itera el cuerpo del RUT de derecha a izquierda
+    let multiplo = 2; 
+    
     for (let i = cuerpo.length - 1; i >= 0; i--) {
-        suma += parseInt(cuerpo[i]) * multiplo; // Suma el producto del dígito por el multiplicador
-        multiplo = multiplo < 7 ? multiplo + 1 : 2; // Incrementa el multiplicador o lo reinicia a 2
+        suma += parseInt(cuerpo[i]) * multiplo; 
+        multiplo = multiplo < 7 ? multiplo + 1 : 2; 
     }
-    let dvr = 11 - (suma % 11); // Calcula el dígito verificador esperado
+    let dvr = 11 - (suma % 11); 
     dvr = dvr === 11 ? '0' : dvr === 10 ? 'K' : dvr.toString(); // Convierte 11 a '0', 10 a 'K', o a string
 
     return dv === dvr; // Compara el dígito verificador ingresado con el calculado
@@ -62,8 +62,7 @@ const portfolioItems = [
 // Función para renderizar el portafolio dinámicamente
 function renderPortfolio() {
     const portfolioGallery = document.querySelector('.portfolio-gallery');
-    portfolioGallery.innerHTML = ''; // Limpiar el contenido existente
-
+    portfolioGallery.innerHTML = ''; 
     portfolioItems.forEach(item => {
         const portfolioItemDiv = document.createElement('div');
         portfolioItemDiv.classList.add('bg-gray-700', 'p-6', 'rounded-lg', 'shadow-md', 'hover:shadow-xl', 'transition', 'duration-300');
@@ -87,11 +86,11 @@ document.addEventListener('DOMContentLoaded', renderPortfolio);
 
 const formulario = document.getElementById('formularioContacto');
 
-// === INTERACCIÓN CON EL DOM ===
+
 const nombreInput = document.getElementById('nombre');
 const mensajeInput = document.getElementById('mensaje');
 
-// 1. Mostrar saludo en vivo en la sección de inicio
+
 nombreInput.addEventListener('input', () => {
     const seccionInicio = document.getElementById('inicio');
     const welcomeHeading = seccionInicio.querySelector('h2');
@@ -102,7 +101,7 @@ nombreInput.addEventListener('input', () => {
     }
 });
 
-// 2. Contador de caracteres en el mensaje
+
 const contador = document.createElement('p');
 contador.id = 'contador-caracteres'; // Asigna ID para referencia CSS/JS
 mensajeInput.insertAdjacentElement('afterend', contador); // Inserta el contador después del textarea
@@ -123,10 +122,10 @@ inputs.forEach(input => {
         const errorSpanId = `error-${input.id}`;
         const errorSpan = document.getElementById(errorSpanId);
         if (errorSpan) {
-            errorSpan.textContent = ''; // Limpia el mensaje de error
+            errorSpan.textContent = ''; 
         }
     });
-    // Restaura el borde a su estado original cuando el input pierde el foco
+    
     input.addEventListener('blur', () => {
         input.classList.remove('focus:border-lime-400', 'focus:ring-lime-400');
     });
@@ -153,10 +152,10 @@ formulario.addEventListener('submit', function (e) {
 
     // Limpiar errores anteriores y reiniciar bordes de input
     [errorNombre, errorRut, errorEmail, errorTelefono, errorComuna, errorMensaje].forEach(errElement => {
-        errElement.textContent = ""; // Limpia el texto del error
-        const inputElement = errElement.previousElementSibling; // El input/textarea asociado al error
+        errElement.textContent = "";
+        const inputElement = errElement.previousElementSibling; 
         if (inputElement) {
-            inputElement.classList.remove('border-red-500'); // Elimina el borde rojo de error
+            inputElement.classList.remove('border-red-500'); 
         }
     });
 
