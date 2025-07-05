@@ -1,0 +1,8 @@
+.error-message {
+    color: #f87171; /* rojo claro de Tailwind */
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+    min-height: 1.25rem;
+  }
+  
