@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portafolio — Julio Adones & Diego Sandoval</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="container nav">
+      <h1 class="brand">Portafolio</h1>
+      <ul class="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="inicio" class="hero container">
+      <div class="hero-text">
+        <h2>¡Bienvenidos!</h2>
+        <p>
+          Somos <strong>Julio Adones</strong> y <strong>Diego Sandoval</strong>. Aquí encontrarás
+          quiénes somos, nuestros trabajos y cómo contactarnos.
+        </p>
+      </div>
+    </section>
+
+    <!-- EQUIPO -->
+    <section id="equipo" class="container section">
+      <h2>El Equipo</h2>
+      <div class="grid2">
+        <!-- JULIO -->
+        <article class="card member">
+          <div class="avatar" aria-hidden="true">JA</div>
+          <h3>Julio Adones</h3>
+          <p class="muted">
+            Estudiante de Analista Programador — INACAP. Trabajo en el área de <strong>Soporte TI</strong>.
+          </p>
+          <p>
+            Apasionado por el diseño y desarrollo web. Me enfoco en crear experiencias limpias,
+            rápidas y accesibles para usuarios reales.
+          </p>
+          <ul class="tags">
+            <li>Soporte TI</li><li>Front-End</li><li>Apps móviles</li>
+          </ul>
+          <div class="mini-links">
+            <a href="mailto:julioadones@gmail.com" class="btn">Email</a>
+            <a href="#portafolio-julio" class="btn ghost">Ver trabajos</a>
+          </div>
+        </article>
+
+        <!-- DIEGO -->
+        <article class="card member">
+          <div class="avatar" aria-hidden="true">DS</div>
+          <h3>Diego Sandoval</h3>
+          <p class="muted">
+            <strong>Ejecutivo Comercial</strong> en empresa de materiales para la construcción DIMACO.
+            Estudiante de <strong>Analista Programador</strong> — INACAP.
+          </p>
+          <p>
+            Me gusta pasar tiempo con mi hijo jugar Minecraft con el , hacer ejercicios e ir al gym. en lo Profesional Integro la mirada comercial con soluciones
+            tecnológicas simples: datos, automatización y foco en el cliente.
+          </p>
+          <ul class="tags">
+            <li>Ventas B2B</li><li>Materiales de Construcción</li><li>Automatización simple</li>
+          </ul>
+          <div class="mini-links">
+            <a href="mailto:diego@example.com" class="btn">Email</a>
+            <a href="#portafolio-diego" class="btn ghost">Ver trabajos</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PORTAFOLIO -->
+    <section id="portafolio" class="container section">
+      <h2>Portafolio</h2>
+
+      <!-- JULIO -->
+      <h3 id="portafolio-julio" class="section-subtitle">Trabajos de Julio</h3>
+      <div class="grid3">
+        <article class="card work">
+          <h4>Creación de Apps</h4>
+          <p>Desarrollo de apps funcionales para equipos móviles.</p>
+        </article>
+        <article class="card work">
+          <h4>Creación de Páginas Web</h4>
+          <p>Desarrollo de sitios personalizados para clientes.</p>
+        </article>
+        <!-- Puedes agregar más ítems aquí -->
+      </div>
+
+      <!-- DIEGO -->
+      <h3 id="portafolio-diego" class="section-subtitle">Trabajos de Diego</h3>
+      <div class="grid3">
+        <article class="card work">
+          <h4>Optimización de Catálogo</h4>
+          <p>
+            Estandarización de descripciones y códigos de productos de construcción
+            para mejorar búsqueda y ventas.
+          </p>
+        </article>
+        <article class="card work">
+          <h4>Panel Comercial</h4>
+          <p>
+            Tablero con métricas (ventas, margen, rotación) para decisiones rápidas
+            en la fuerza de ventas.
+          </p>
+        </article>
+        <article class="card work">
+          <h4>Automatización de Cotizaciones</h4>
+          <p>
+            Plantillas y reglas de precios para reducir tiempos de respuesta a clientes.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="container section">
+      <h2>Contacto</h2>
+
+      <div class="grid2">
+        <!-- Datos rápidos -->
+        <aside class="card contact-card">
+          <h3>Contactos directos</h3>
+          <ul class="list">
+            <li><strong>Julio:</strong> <a href="mailto:julioadones@gmail.com">julioadones@gmail.com</a></li>
+            <li><strong>Tel. Julio:</strong> +123 456 7890</li>
+            <li><strong>Diego:</strong> <a href="mailto:diego@example.com">diego@example.com</a></li>
+          </ul>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Twitter">Twitter</a>
+            <a href="#" aria-label="Instagram">Instagram</a>
+          </div>
+        </aside>
+
+        <!-- Formulario -->
+        <form class="card contact-form" onsubmit="alert('Mensaje enviado (simulación).'); return false;">
+          <h3>Envíanos un mensaje</h3>
+
+          <label for="destinatario">Destinatario</label>
+          <select id="destinatario" name="destinatario" required>
+            <option value="julio">Julio (Soporte TI)</option>
+            <option value="diego">Diego (Ejecutivo Comercial)</option>
+          </select>
+
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required/>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required/>
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos cómo podemos ayudarte" required></textarea>
+
+          <button type="submit" class="btn">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2025 Julio Adones & Diego Sandoval</p>
+      <nav class="foot-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
